@@ -4,7 +4,6 @@ var https 	= require('https'),
 
 var Feeds = function(){
 	this.reddit = new Reddit();
-	this.getRedditURLs();
 }
 
 Feeds.prototype.init = function(){
@@ -37,8 +36,5 @@ Feeds.prototype.getRedditURLs = function(){
 		return _this.reddit.getURLs(data);
 	});
 }
-
-var feeds = new Feeds();
-
 
 module.exports = Feeds;
