@@ -3,7 +3,8 @@ var Reddit = function(){
 }
 
 Reddit.prototype.getURLs = function(json){
-
+    // stubbed
+    return json.data.children[0].data.url;
 }
 
 module.exports = Reddit;
