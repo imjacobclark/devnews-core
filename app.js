@@ -1,6 +1,4 @@
-var https = require('https'),
-	q = require('q'),
-	Reddit = require('./feeds/Reddit');
+var Reddit = require('./feeds/Reddit');
 
 var reddit = new Reddit();
 
