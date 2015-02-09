@@ -29,11 +29,11 @@ Feeds.prototype.getData = function(endpoint){
     return deferred.promise;
 }
 
-Feeds.prototype.getRedditURLs = function(){
-	var _this = this;	
+Feeds.prototype.parseRedditData = function(){
+	var _this      = this;
 
-	this.getData(this.reddit.endpoint).then(function(data){
-		return _this.reddit.getURLs(data);
+	return this.getData(this.reddit.endpoint).then(function(data){
+        return _this.reddit.parseData(data, q);
 	});
 }
 
