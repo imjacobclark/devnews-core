@@ -8,3 +8,4 @@ node_js:
   - iojs-v1.0.2
 install:
   - npm install mocha -g
+  - npm install
