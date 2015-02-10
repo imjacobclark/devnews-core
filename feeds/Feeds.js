@@ -1,6 +1,6 @@
 var https 	= require('https'),
 	q 		= require('q'),
-	Reddit	= require('./sources/reddit');
+	Reddit	= require('./sources/Reddit');
 
 var Feeds = function(){
 	this.reddit = new Reddit();
