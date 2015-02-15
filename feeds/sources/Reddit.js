@@ -13,6 +13,7 @@ Reddit.prototype.parseData = function(json, q){
         post.url    = json.data.children[i].data.url;
         post.title  = json.data.children[i].data.title;
         post.score  = json.data.children[i].data.score;
+        post.source = "reddit";
 
         data.push(post);
     }

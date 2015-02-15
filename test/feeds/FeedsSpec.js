@@ -13,7 +13,7 @@ describe('Feeds', function(){
 		it('should return an object when invoked', function(){
 			var feeds = new Feeds();
 			
-			feeds.parseRedditData().then(function(data){
+			feeds.getRedditData().then(function(data){
 				assert.equal("array", typeof data);
 				assert.equal("object", typeof data[0]);
 			});

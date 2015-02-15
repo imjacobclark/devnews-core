@@ -2,7 +2,7 @@ var assert 	= require("assert"),
 	q 		= require('q'),
 	Reddit	= require("../../../feeds/sources/Reddit");
 
-describe('Reddit', function(){
+describe('Source Reddit', function(){
 	describe('.endpoint', function(){
 		it('should return a valid string', function(){
 			var reddit = new Reddit();
