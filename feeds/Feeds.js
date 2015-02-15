@@ -47,6 +47,12 @@ Feeds.prototype.getHackerNewsData = function(limit){
     });
 }
 
+Feeds.prototype.getTopNews = function(){
+    return this.getRedditData().then(function(data){
+        return data;
+    });
+}
+
 new Feeds();
 
 module.exports = Feeds;
