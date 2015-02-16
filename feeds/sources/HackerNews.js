@@ -9,7 +9,7 @@ HackerNews.prototype.getTopItems = function(items, q){
     var deferred    = q.defer()
         data        = [];
 
-    for(var i = 0; i <= 2; i++){
+    for(var i = 0; i <= 25; i++){
         data.push(items[i]);
     }
 
@@ -31,6 +31,27 @@ HackerNews.prototype.getItems = function(getData, data){
     return q.all(promises).then(function(result){
         return result;
     })    
+}
+
+HackerNews.prototype.parseData = function(json, q){
+    var deferred    = q.defer(),
+        dataLength  = json.length,
+        data        = [];
+
+    for(var i = 0; i < dataLength; i++){
+        var post    = {};
+
+        post.url    = json[i].url;
+        post.title  = json[i].title;
+        post.score  = json[i].score;
+        post.source = "hackernews";
+
+        data.push(post);
+    }
+
+    deferred.resolve(data);
+    
+    return deferred.promise;
 }
 
 module.exports = HackerNews;
