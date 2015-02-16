@@ -1,5 +1,6 @@
 var assert 		= require("assert"),
 	q 			= require('q'),
+	Feeds 		= require('../../../feeds/Feeds')
 	HackerNews	= require("../../../feeds/sources/HackerNews");
 
 describe('Source HackerNews', function(){
@@ -28,6 +29,16 @@ describe('Source HackerNews', function(){
 				assert.equal(data.length, 25);
 				assert.equal("integer", typeof data[0]);
 			});
+		});
+	});
+
+	describe('.getItems', function(){
+		xit('should return the data assosiated with an ID', function(){
+			var hackernews = new HackerNews();
+
+			data = [ 9052560 ]
+			
+			// this needs implementing 
 		});
 	});
 })

@@ -45,7 +45,9 @@ Feeds.prototype.getHackerNewsData = function(limit){
 
     return this.getData(this.hackernews.endpointItems).then(function(data){
         return _this.hackernews.getTopItems(data, q).then(function(data){
-            return _this.hackernews.getItems(_this.getData);
+            return _this.hackernews.getItems(_this.getData, data).then(function(data){
+                return data;
+            });
         });
     });
 }
