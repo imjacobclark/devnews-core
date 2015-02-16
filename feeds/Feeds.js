@@ -47,12 +47,33 @@ Feeds.prototype.getHackerNewsData = function(limit){
     });
 }
 
-Feeds.prototype.getTopNews = function(){
-    return this.getRedditData().then(function(data){
-        return data;
-    });
+Feeds.prototype.sortDataByScore = function(data){
+    var deferred    = q.defer(),
+        swapped;
+
+    do {
+        swapped = false;
+        for (var i = 0; i < data.length-1; i++) {
+            if (data[i].score < data[i+1].score) {
+                var temp = data[i];
+                data[i] = data[i+1];
+                data[i+1] = temp;
+                swapped = true;
+            }
+        }
+    } while (swapped);
+
+    deferred.resolve(data);
+    
+    return deferred.promise;
 }
 
-new Feeds();
+Feeds.prototype.getTopNews = function(){
+    var _this      = this;
+
+    return this.getRedditData().then(function(data){
+        return _this.sortDataByScore(data, q);
+    });
+}
 
 module.exports = Feeds;
