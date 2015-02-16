@@ -6,6 +6,7 @@ var https          = require('https'),
 var Feeds = function(){
 	this.reddit        = new Reddit();
     this.hackernews    = new HackerNews();
+    this.getHackerNewsData();
 }
 
 Feeds.prototype.init = function(){
@@ -43,7 +44,9 @@ Feeds.prototype.getHackerNewsData = function(limit){
     var _this      = this;
 
     return this.getData(this.hackernews.endpointItems).then(function(data){
-        return _this.hackernews.getItems(data, q, this.getData);
+        return _this.hackernews.getTopItems(data, q).then(function(data){
+            return _this.hackernews.getItems(_this.getData);
+        });
     });
 }
 
@@ -75,5 +78,7 @@ Feeds.prototype.getTopNews = function(){
         return _this.sortDataByScore(data, q);
     });
 }
+
+new Feeds();
 
 module.exports = Feeds;

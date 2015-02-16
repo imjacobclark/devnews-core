@@ -1,6 +1,6 @@
 var HackerNews = function(){
     this.endpointItems = "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty";
-    this.endpointItem  = "https://hacker-news.firebaseio.com/v0/item/{id}.json?print=pretty";
+    this.endpointItem  = "https://hacker-news.firebaseio.com/v0/item/9054503.json?print=pretty";
 }
 
 HackerNews.prototype.getTopItems = function(items, q){
@@ -14,6 +14,10 @@ HackerNews.prototype.getTopItems = function(items, q){
     deferred.resolve(data);
     
     return deferred.promise;
+}
+
+HackerNews.prototype.getItems = function(getData){
+
 }
 
 module.exports = HackerNews;
