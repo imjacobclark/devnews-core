@@ -8,7 +8,7 @@ feeds.getTopNews().then(function(data){
 		res.writeHead(200, {'Content-Type': 'application/json'});
 
 		res.end(JSON.stringify(data));
-	}).listen(80, '0.0.0.0');
+	}).listen(1337, '0.0.0.0');
 }).fail(function(){
 	res.writeHead(200, {'Content-Type': 'application/json'});
 
