@@ -9,7 +9,7 @@ HackerNews.prototype.getTopItems = function(items, q){
     var deferred    = q.defer()
         data        = [];
 
-    for(var i = 0; i <= 25; i++){
+    for(var i = 0; i <= 10; i++){
         data.push(items[i]);
     }
 
@@ -30,7 +30,7 @@ HackerNews.prototype.getItems = function(getData, data){
 
     return q.all(promises).then(function(result){
         return result;
-    })    
+    });    
 }
 
 HackerNews.prototype.parseData = function(json, q){

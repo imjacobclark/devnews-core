@@ -41,10 +41,12 @@ Feeds.prototype.getRedditData = function(limit){
 
 Feeds.prototype.getHackerNewsData = function(limit){
     var _this      = this;
+            console.log("Running")
 
     return this.getData(this.hackernews.endpointItems).then(function(data){
         return _this.hackernews.getTopItems(data, q).then(function(data){
             return _this.hackernews.getItems(_this.getData, data).then(function(data){
+
                 return _this.hackernews.parseData(data, q);
             });
         });
@@ -75,13 +77,12 @@ Feeds.prototype.sortDataByScore = function(data){
 Feeds.prototype.getTopNews = function(){
     var _this      = this;
 
-    return this.getRedditData().then(function(data){
-        return _this.sortDataByScore(data, q).then(function(data){
-            var reddit = data;
-
-            return reddit;
+    return q.all([this.getRedditData(), this.getHackerNewsData()]).then(function(result){
+        return _this.sortDataByScore(result[0].concat(result[1])).then(function(data){
+            return data;
         });
     });
+
 }
 
 module.exports = Feeds;

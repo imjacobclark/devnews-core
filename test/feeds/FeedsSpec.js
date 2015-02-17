@@ -33,4 +33,10 @@ describe('Feeds', function(){
 			});
 		});
 	});
+
+	describe('.getTopNews()', function(){
+		xit('should accept promises for arrays of JSON, merge them and sort them accordingly', function(){
+			// stubbed
+		});
+	});
 });
