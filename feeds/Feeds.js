@@ -41,7 +41,6 @@ Feeds.prototype.getRedditData = function(limit){
 
 Feeds.prototype.getHackerNewsData = function(limit){
     var _this      = this;
-            console.log("Running")
 
     return this.getData(this.hackernews.endpointItems).then(function(data){
         return _this.hackernews.getTopItems(data, q).then(function(data){
