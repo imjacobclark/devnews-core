@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/DevNews/engine-core.svg)](https://travis-ci.org/DevNews/engine-core)
+[![Build Status](https://travis-ci.org/imjacobclark/devnews-core.svg)](https://travis-ci.org/imjacobclark/devnews-core)
 
-# engine-core
+# devnews-core
 The core aggregation engine and API endpoints
