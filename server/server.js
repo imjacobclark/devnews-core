@@ -5,8 +5,8 @@ var http 	= require('http'),
 
 var serveData = http.createServer(function (req, res) {
 	feeds.getTopNews().then(function(data){
-		res.writeHead(200, {'Content-Type': 'application/json'});
-		res.end(JSON.stringify(data));	
+		res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+        res.end(JSON.stringify(data));	
 	}).fail(function(){
 		res.writeHead(200, {'Content-Type': 'application/json'});
 		res.end("{status:  false}");

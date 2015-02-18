@@ -34,9 +34,13 @@ describe('Source HackerNews', function(){
 
 	describe('.getItems', function(){
 		xit('should return the data assosiated with an ID', function(){
-			var hackernews = new HackerNews();
+			var hackernews = new HackerNews(),
+				feeds 	   = new Feeds();
 
-			data = [ 9052560 ]
+			data = [ 9052560, 9067147 ]
+			hackernews.getItems(feeds.getData, data).then(function(data){
+				console.log(data)
+			})
 			
 			// this needs implementing 
 		});
