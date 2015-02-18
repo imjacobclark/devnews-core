@@ -10,11 +10,22 @@ describe('Feeds', function(){
 		});
 	});
 
-	describe('.parseRedditData()', function(){
+	describe('.getRedditData()', function(){
 		it('should return an object when invoked', function(){
 			var feeds = new Feeds();
 			
 			feeds.getRedditData().then(function(data){
+				assert.equal("array", typeof data);
+				assert.equal("object", typeof data[0]);
+			});
+		});
+	});
+
+	describe('.getHackerNewsData()', function(){
+		it('should return an object when invoked', function(){
+			var feeds = new Feeds();
+			
+			feeds.getHackerNewsData().then(function(data){
 				assert.equal("array", typeof data);
 				assert.equal("object", typeof data[0]);
 			});
@@ -35,8 +46,12 @@ describe('Feeds', function(){
 	});
 
 	describe('.getTopNews()', function(){
-		xit('should accept promises for arrays of JSON, merge them and sort them accordingly', function(){
-			// stubbed
+		it('should return 25 news items', function(){
+			var feeds = new Feeds();
+
+			feeds.getTopNews().then(function(data){
+				assert.equal(data.length, 25);
+			});
 		});
 	});
 });
