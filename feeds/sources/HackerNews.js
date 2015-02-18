@@ -9,7 +9,7 @@ HackerNews.prototype.getTopItems = function(items, q){
     var deferred    = q.defer()
         data        = [];
 
-    for(var i = 0; i <= 10; i++){
+    for(var i = 0; i <= 15; i++){
         data.push(items[i]);
     }
 

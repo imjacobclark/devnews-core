@@ -68,7 +68,7 @@ Feeds.prototype.sortDataByScore = function(data){
         }
     } while (swapped);
 
-    deferred.resolve(data);
+    deferred.resolve(data.splice(0, 25));
     
     return deferred.promise;
 }
