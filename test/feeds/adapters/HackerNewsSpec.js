@@ -1,7 +1,7 @@
 var assert 		= require("assert"),
 	q 			= require('q'),
 	Feeds 		= require('../../../feeds/Feeds')
-	HackerNews	= require("../../../feeds/sources/HackerNews");
+	HackerNews	= require("../../../feeds/adapters/HackerNews");
 
 describe('Source HackerNews', function(){
 	describe('.endpointItems', function(){

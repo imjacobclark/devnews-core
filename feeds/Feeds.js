@@ -1,7 +1,7 @@
 var https          = require('https'),
 	q              = require('q'),
-	Reddit         = require('./sources/Reddit'),
-    HackerNews     = require('./sources/HackerNews');
+	Reddit         = require('./adapters/Reddit'),
+    HackerNews     = require('./adapters/HackerNews');
 
 var Feeds = function(){
 	this.reddit        = new Reddit();

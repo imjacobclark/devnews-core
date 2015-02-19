@@ -1,6 +1,6 @@
 var assert 	= require("assert"),
 	q 		= require('q'),
-	Reddit	= require("../../../feeds/sources/Reddit");
+	Reddit	= require("../../../feeds/adapters/Reddit");
 
 describe('Source Reddit', function(){
 	describe('.endpoint', function(){
