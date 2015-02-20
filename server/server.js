@@ -11,4 +11,4 @@ var serveData = http.createServer(function (req, res) {
 		res.writeHead(200, {'Content-Type': 'application/json'});
 		res.end("{status:  false}");
 	});	
-}).listen(1337, '0.0.0.0');
+}).listen(process.env.PORT || 1337, '0.0.0.0');
