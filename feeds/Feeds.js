@@ -1,12 +1,12 @@
 var https          = require('https'),
-	q              = require('q'),
+    q              = require('q'),
     NodeCache      = require( "node-cache" ),
     cache          = new NodeCache({ stdTTL: 600, checkperiod: 601 }),
-	Reddit         = require('./adapters/Reddit'),
+    Reddit         = require('./adapters/Reddit'),
     HackerNews     = require('./adapters/HackerNews');
 
 var Feeds = function(){
-	this.reddit        = new Reddit();
+    this.reddit        = new Reddit();
     this.hackernews    = new HackerNews();
     NodeCache.prototype.feeds = this;
 }
@@ -15,7 +15,7 @@ Feeds.prototype.init = function(){
 }
 
 Feeds.prototype.getData = function(endpoint){
-	var deferred = q.defer();
+    var deferred = q.defer();
 
     https.get(endpoint, function(res) {
         var body = '';
@@ -35,11 +35,11 @@ Feeds.prototype.getData = function(endpoint){
 }
 
 Feeds.prototype.getRedditData = function(limit){
-	var _this      = this;
+    var _this      = this;
 
-	return this.getData(this.reddit.endpoint).then(function(data){
+    return this.getData(this.reddit.endpoint).then(function(data){
         return _this.reddit.parseData(data, q);
-	});
+    });
 }
 
 Feeds.prototype.getHackerNewsData = function(limit){
