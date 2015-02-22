@@ -92,7 +92,7 @@ Feeds.prototype.setCachedNews = function(){
 }
 
 Feeds.prototype.getCachedNews = function(){
-    return cache.get("data");
+    return cache.get("data").data;
 }
 
 cache.on("expired", function(self){
