@@ -1,14 +1,15 @@
 {
-	"name": "engine-core",
-	"version": "0.0.1",
-	"description": "The core aggregation engine and API endpoints",
-	"author": "Jacob Clark <jacob.jh.clark@googlemail.com>",
-	"dependencies": {
-		"q": "^1.1.2"
-	},
-	"scripts": {
-		"test":  "mocha --recursive",
-		"start": "node server/server.js"
-	},
-	"license": "MIT"
+  "name": "engine-core",
+  "version": "0.0.1",
+  "description": "The core aggregation engine and API endpoints",
+  "author": "Jacob Clark <jacob.jh.clark@googlemail.com>",
+  "dependencies": {
+    "node-cache": "^1.1.0",
+    "q": "^1.1.2"
+  },
+  "scripts": {
+    "test": "mocha --recursive",
+    "start": "node server/server.js"
+  },
+  "license": "MIT"
 }

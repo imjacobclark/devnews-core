@@ -1,11 +1,14 @@
 var https          = require('https'),
 	q              = require('q'),
+    NodeCache      = require( "node-cache" ),
+    cache          = new NodeCache({ stdTTL: 600, checkperiod: 601 }),
 	Reddit         = require('./adapters/Reddit'),
     HackerNews     = require('./adapters/HackerNews');
 
 var Feeds = function(){
 	this.reddit        = new Reddit();
     this.hackernews    = new HackerNews();
+    NodeCache.prototype.feeds = this;
 }
 
 Feeds.prototype.init = function(){
@@ -79,8 +82,21 @@ Feeds.prototype.getTopNews = function(){
         return _this.sortDataByScore(result[0].concat(result[1])).then(function(data){
             return data;
         });
-    });
-
+    }); 
 }
+
+Feeds.prototype.setCachedNews = function(){
+    return this.getTopNews().then(function(data){
+        return cache.set("data", data);
+    });
+}
+
+Feeds.prototype.getCachedNews = function(){
+    return cache.get("data");
+}
+
+cache.on("expired", function(self){
+    this.feeds.setCachedNews();
+});
 
 module.exports = Feeds;

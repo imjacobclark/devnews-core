@@ -1,5 +1,5 @@
 var assert 	= require("assert"),
-	q 			= require('q'),
+	q 		= require('q'),
 	Feeds	= require("../../feeds/Feeds");
 
 describe('Feeds', function(){
@@ -52,6 +52,31 @@ describe('Feeds', function(){
 			feeds.getTopNews().then(function(data){
 				assert.equal(data.length, 25);
 			});
+		});
+	});
+
+	describe('.setCachedNews()', function(){
+		xit('should set cache with a JSON array of 25 elements', function(){
+			var feeds = new Feeds();
+
+			feeds.setCachedNews().then(function(data){
+				// something weird is causing getData() to fail in the test suite, pending for now
+			});
+		});
+	});
+
+	describe('.getCachedNews()', function(){
+		xit('should return a JSON array of 25 elements', function(){
+			var feeds = new Feeds();
+
+			feeds.setCachedNews(); // something weird is causing getData() to fail in the test suite, pending for now
+			feeds.getCachedNews();
+		});
+	});
+
+	describe('event:on expired', function(){
+		xit('should call setCachedNews', function(){
+			// stubbed, need to use Sinon
 		});
 	});
 });

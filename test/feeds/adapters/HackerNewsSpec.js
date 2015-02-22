@@ -37,7 +37,8 @@ describe('Source HackerNews', function(){
 			var hackernews = new HackerNews(),
 				feeds 	   = new Feeds();
 
-			data = [ 9052560, 9067147 ]
+			data = [ 9090227, 9090525, 9090642, 9090394, 9090490, 9090100, 9090471, 9090742, 9089563, 9089259, 9089894, 9089439, 9091188, 9089747, 9090250, 9087819 ]
+
 			hackernews.getItems(feeds.getData, data).then(function(data){
 				console.log(data)
 			})
