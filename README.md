@@ -13,4 +13,4 @@ docker build -t devnews-core .
 docker run -d -p 1337:1337 --name devnews-core devnews-core
 ```
 
-The API will now be exposed at `http://localhost:133:`
+The API will now be exposed at `http://localhost:1337`
