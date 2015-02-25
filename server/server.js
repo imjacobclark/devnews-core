@@ -1,26 +1,16 @@
-var http    = require('http');
-var NodeCache      = require( "node-cache" );
-var cache          = new NodeCache({ stdTTL: 600, checkperiod: 601  });
+var http    = require('http'),
+    q       = require('q'),
+    Feeds   = require('../feeds/Feeds'),
+    feeds   = new Feeds();
 
-NodeCache.prototype.context = this; // set a content property of this for use in the EventEmitter callback below
-
-function setCache(){
-     return cache.set("data", {"some": "data"});
-}
-
-function getCache(){
-     return cache.get("data");
-}
-
-cache.on("expired", function(){
-    this.context.setCache();
-});
-
-if(setCache() == true)
+feeds.setCachedNews().then(function(data){
+    if(data == true)
         serve();
+});
 
 function serve(){
     http.createServer(function (req, res) {
-        res.end(JSON.stringify(getCache())); 
+        res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+        res.end(JSON.stringify(feeds.getCachedNews())); 
     }).listen(process.env.PORT || 1337, '0.0.0.0');
 };
