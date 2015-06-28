@@ -1,17 +1,43 @@
 var https          = require('https'),
+    http           = require('http'),
     q              = require('q'),
     NodeCache      = require( "node-cache" ),
+    parseString    = require('xml2js').parseString;
     cache          = new NodeCache({ stdTTL: 600, checkperiod: 601 }),
     Reddit         = require('./adapters/Reddit'),
-    HackerNews     = require('./adapters/HackerNews');
+    HackerNews     = require('./adapters/HackerNews'),
+    SlashDot       = require('./adapters/SlashDot');
 
 var Feeds = function(){
     this.reddit        = new Reddit();
     this.hackernews    = new HackerNews();
+    this.slashdot      = new SlashDot();
     NodeCache.prototype.feeds = this;
 }
 
 Feeds.prototype.init = function(){
+}
+
+Feeds.prototype.getXMLData = function(endpoint){
+    var deferred = q.defer();
+
+    http.get(endpoint, function(res) {
+        var body = '';
+
+        res.on('data', function(chunk) {
+            body += chunk;
+        });
+
+        res.on('end', function() {
+            parseString(body, function (err, result) {
+                deferred.resolve(result);
+            });
+        });
+    }).on('error', function(e) {
+        deferred.reject(e);
+    });
+
+    return deferred.promise;
 }
 
 Feeds.prototype.getData = function(endpoint){
@@ -32,6 +58,16 @@ Feeds.prototype.getData = function(endpoint){
     });
 
     return deferred.promise;
+}
+
+Feeds.prototype.getSlashDotData = function(limit){
+    var _this      = this;
+
+    return this.getXMLData(this.slashdot.endpoint).then(function(data){
+        return _this.slashdot.parseData(data, q);
+    }, function(err){
+        console.log(err);
+    });
 }
 
 Feeds.prototype.getRedditData = function(limit){
@@ -82,8 +118,8 @@ Feeds.prototype.sortDataByScore = function(data){
 Feeds.prototype.getTopNews = function(){
     var _this      = this;
 
-    return q.all([this.getRedditData(), this.getHackerNewsData()]).then(function(result){
-        return _this.sortDataByScore(result[0].concat(result[1])).then(function(data){
+    return q.all([this.getRedditData(), this.getHackerNewsData(), this.getSlashDotData()]).then(function(result){
+        return _this.sortDataByScore(result[0].concat(result[1]).concat(result[2])).then(function(data){
             return data;
         });
     }); 
