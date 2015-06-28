@@ -30,6 +30,8 @@ HackerNews.prototype.getItems = function(getData, data){
 
     return q.all(promises).then(function(result){
         return result;
+    }, function(err){
+        console.log(err);
     });    
 }
 

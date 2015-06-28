@@ -39,6 +39,8 @@ Feeds.prototype.getRedditData = function(limit){
 
     return this.getData(this.reddit.endpoint).then(function(data){
         return _this.reddit.parseData(data, q);
+    }, function(err){
+        console.log(err);
     });
 }
 
@@ -51,6 +53,8 @@ Feeds.prototype.getHackerNewsData = function(limit){
                 return _this.hackernews.parseData(data, q);
             });
         });
+    }, function(err){
+        console.log(err);
     });
 }
 

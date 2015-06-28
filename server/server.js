@@ -12,5 +12,7 @@ function serve(){
     http.createServer(function (req, res) {
         res.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
         res.end(JSON.stringify(feeds.getCachedNews())); 
+        
+        console.log(feeds.getCachedNews());
     }).listen(process.env.PORT || 1337, '0.0.0.0');
 };
