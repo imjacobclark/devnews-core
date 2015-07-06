@@ -19,9 +19,8 @@ HackerNews.prototype.getTopItems = function(items, q){
 }
 
 HackerNews.prototype.getItems = function(getData, data){
-    var _this       = this
-    deferred        = q.defer(),
-    promises        = [];
+    var deferred        = q.defer(),
+    promises            = [];
 
     for(var i = 0; i < data.length; i++){
         var endpoint = this.endpointItem.replace(/{id}/, data[i])
