@@ -61,35 +61,29 @@ Feeds.prototype.getData = function(endpoint){
 }
 
 Feeds.prototype.getSlashDotData = function(limit){
-    var _this      = this;
-
     return this.getXMLData(this.slashdot.endpoint).then(function(data){
-        return _this.slashdot.parseData(data, q);
-    }, function(err){
+        return this.slashdot.parseData(data, q);
+    }.bind(this), function(err){
         console.log(err);
     });
 }
 
 Feeds.prototype.getRedditData = function(limit){
-    var _this      = this;
-
     return this.getData(this.reddit.endpoint).then(function(data){
-        return _this.reddit.parseData(data, q);
-    }, function(err){
+        return this.reddit.parseData(data, q);
+    }.bind(this), function(err){
         console.log(err);
     });
 }
 
 Feeds.prototype.getHackerNewsData = function(limit){
-    var _this      = this;
-
     return this.getData(this.hackernews.endpointItems).then(function(data){
-        return _this.hackernews.getTopItems(data, q).then(function(data){
-            return _this.hackernews.getItems(_this.getData, data).then(function(data){
-                return _this.hackernews.parseData(data, q);
-            });
-        });
-    }, function(err){
+        return this.hackernews.getTopItems(data, q).then(function(data){
+            return this.hackernews.getItems(this.getData, data).then(function(data){
+                return this.hackernews.parseData(data, q);
+            }.bind(this));
+        }.bind(this));
+    }.bind(this), function(err){
         console.log(err);
     });
 }
@@ -116,13 +110,11 @@ Feeds.prototype.sortDataByScore = function(data){
 }
 
 Feeds.prototype.getTopNews = function(){
-    var _this      = this;
-
     return q.all([this.getRedditData(), this.getHackerNewsData(), this.getSlashDotData()]).then(function(result){
-        return _this.sortDataByScore(result[0].concat(result[1]).concat(result[2])).then(function(data){
+        return this.sortDataByScore(result[0].concat(result[1]).concat(result[2])).then(function(data){
             return data;
-        });
-    }); 
+        }.bind(this));
+    }.bind(this)); 
 }
 
 Feeds.prototype.setCachedNews = function(){
