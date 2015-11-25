@@ -10,7 +10,7 @@ Developer news aggregation engine and API endpoints
 ```
 git clone https://github.com/imjacobclark/devnews-core.git && cd devnews-core
 docker build -t devnews-core .
-docker run -d -p 1337:1337 --name devnews-core devnews-core
+docker run -d -p 3000:3000 --name devnews-core devnews-core
 ```
 
-The API will now be exposed at `http://localhost:1337`
+The API will now be exposed at `http://localhost:3000`
