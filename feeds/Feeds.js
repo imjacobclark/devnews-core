@@ -105,7 +105,7 @@ Feeds.prototype.sortDataByScore = function(data){
     } while (swapped);
 
     deferred.resolve(data.splice(0, 25));
-    
+
     return deferred.promise;
 }
 
@@ -114,7 +114,7 @@ Feeds.prototype.getTopNews = function(){
         return this.sortDataByScore(result[0].concat(result[1]).concat(result[2])).then(function(data){
             return data;
         }.bind(this));
-    }.bind(this)); 
+    }.bind(this));
 }
 
 Feeds.prototype.setCachedNews = function(){
